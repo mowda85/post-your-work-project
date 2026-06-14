@@ -7,7 +7,15 @@ CITY_DATA = { 'chicago': 'chicago.csv',
  
 MONTHS = ['january', 'february', 'march', 'april', 'may', 'june']
 DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
- 
+
+def get_user_choice(prompt, valid_options):
+    """Repeatedly prompts the user until a valid option is entered."""
+    while True:
+        choice = input(prompt).strip().lower()
+        if choice in valid_options:
+            return choice
+        print(f"  x '{choice}' is not valid. Choose from: {', '.join(valid_options)}")
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
