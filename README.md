@@ -33,3 +33,11 @@ Install dependencies with:
 - Most common start station, end station, and trip combination
 - Total and average trip duration
 - User type counts, gender counts, and birth year stats
+
+## Known Limitations
+- Washington data has no Gender or Birth Year columns
+- Data covers January to June 2017 only
+
+## Acknowledgements
+- Udacity — Programming for Data Science with Python Nanodegree
+- Motivate — original bike share data provider
