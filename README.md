@@ -18,3 +18,18 @@ Install dependencies with:
 | new_york_city.csv | Bike share data for New York City (excluded)    |
 | .gitignore        | Prevents CSV files from being tracked by Git    |
 | README.md         | Project documentation (this file)               |
+
+## How to Run
+1. Place the CSV data files in the same folder as bikeshare.py
+2. Run the script:
+    python bikeshare.py
+3. Follow the interactive prompts:
+   - Choose a city: Chicago, New York City, or Washington
+   - Choose a filter: month, day, both, or none
+   - Choose a month (January-June) and/or day if applicable
+
+## Statistics Computed
+- Most common month, day of week, and start hour
+- Most common start station, end station, and trip combination
+- Total and average trip duration
+- User type counts, gender counts, and birth year stats
