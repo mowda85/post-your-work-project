@@ -79,15 +79,15 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    df = pd.read_csv(CITY_DATA[city])
+    bike_df = pd.read_csv(CITY_DATA[city])
  
     # Convert Start Time to datetime
-    df['Start Time'] = pd.to_datetime(df['Start Time'])
+    bike_df['Start Time'] = pd.to_datetime(bike_df['Start Time'])
  
     # Extract helper columns
-    df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.dayofweek
-    df['hour'] = df['Start Time'].dt.hour
+    bike_df['month'] = bike_df['Start Time'].dt.month
+    bike_df['day_of_week'] = bike_df['Start Time'].dt.dayofweek
+    bike_df['hour'] = bike_df['Start Time'].dt.hour
  
     # Apply month filter
     if month != 'all':
@@ -99,7 +99,7 @@ def load_data(city, month, day):
         day_index = DAYS.index(day)
         df = df[df['day_of_week'] == day_index]
  
-    return df
+    return bike_df
  
  
 def time_stats(df):
