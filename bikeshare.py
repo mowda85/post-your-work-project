@@ -7,7 +7,15 @@ CITY_DATA = { 'chicago': 'chicago.csv',
  
 MONTHS = ['january', 'february', 'march', 'april', 'may', 'june']
 DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
- 
+
+def get_user_choice(prompt, valid_options):
+    """Repeatedly prompts the user until a valid option is entered."""
+    while True:
+        choice = input(prompt).strip().lower()
+        if choice in valid_options:
+            return choice
+        print(f"  x '{choice}' is not valid. Choose from: {', '.join(valid_options)}")
+
 def get_filters():
     """
     Asks user to specify a city, month, and day to analyze.
@@ -79,15 +87,15 @@ def load_data(city, month, day):
     Returns:
         df - Pandas DataFrame containing city data filtered by month and day
     """
-    df = pd.read_csv(CITY_DATA[city])
+    bike_df = pd.read_csv(CITY_DATA[city])
  
     # Convert Start Time to datetime
-    df['Start Time'] = pd.to_datetime(df['Start Time'])
+    bike_df['Start Time'] = pd.to_datetime(bike_df['Start Time'])
  
     # Extract helper columns
-    df['month'] = df['Start Time'].dt.month
-    df['day_of_week'] = df['Start Time'].dt.dayofweek
-    df['hour'] = df['Start Time'].dt.hour
+    bike_df['month'] = bike_df['Start Time'].dt.month
+    bike_df['day_of_week'] = bike_df['Start Time'].dt.dayofweek
+    bike_df['hour'] = bike_df['Start Time'].dt.hour
  
     # Apply month filter
     if month != 'all':
@@ -99,7 +107,7 @@ def load_data(city, month, day):
         day_index = DAYS.index(day)
         df = df[df['day_of_week'] == day_index]
  
-    return df
+    return bike_df
  
  
 def time_stats(df):
@@ -152,20 +160,7 @@ def station_stats(df):
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
  
- 
-def trip_duration_stats(df):
-    """Displays statistics on the total and average trip duration."""
- 
-    print('\nCalculating Trip Duration...\n')
-    start_time = time.time()
- 
-    # TO DO: display total travel time
-    total_seconds = df['Trip Duration'].sum()
- 
-    # TO DO: display mean travel time
-    mean_seconds = df['Trip Duration'].mean()
- 
-    def format_duration(seconds):
+def format_duration(seconds):
         """Convert seconds into a human-readable days/hours/minutes/seconds string."""
         seconds = int(seconds)
         days, remainder = divmod(seconds, 86400)
@@ -186,6 +181,18 @@ def trip_duration_stats(df):
  
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
+    
+def trip_duration_stats(df):
+    """Displays statistics on the total and average trip duration."""
+ 
+    print('\nCalculating Trip Duration...\n')
+    start_time = time.time()
+ 
+    # TO DO: display total travel time
+    total_seconds = df['Trip Duration'].sum()
+ 
+    # TO DO: display mean travel time
+    mean_seconds = df['Trip Duration'].mean()
  
  
 def user_stats(df):
