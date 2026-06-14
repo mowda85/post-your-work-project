@@ -10,3 +10,11 @@ for three major US cities: Chicago, New York City, and Washington D.C.
 
 Install dependencies with:
     pip install pandas
+
+## Files Included
+| File              | Description                                     |
+|-------------------|-------------------------------------------------|
+| bikeshare.py      | Main Python script — runs the analysis          |
+| new_york_city.csv | Bike share data for New York City (excluded)    |
+| .gitignore        | Prevents CSV files from being tracked by Git    |
+| README.md         | Project documentation (this file)               |
